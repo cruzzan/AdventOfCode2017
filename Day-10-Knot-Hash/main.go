@@ -6,7 +6,6 @@ import (
 	"bufio"
 	"strconv"
 	"strings"
-	"math"
 )
 
 func main() {
@@ -38,7 +37,6 @@ func task2(list [256]int, input string) string {
 		list, skip, position = shuffleList(pivots, list, skip, position)
 	}
 
-	var denseHash [16]int
 	var hash string
 
 	for i := 0; i < len(list); {
@@ -47,8 +45,7 @@ func task2(list [256]int, input string) string {
 			value = value ^ item
 			i++
 		}
-		index := int(math.Floor(float64(i-1)/16))
-		denseHash[index] = value
+		hash += fmt.Sprintf("%02x", value)
 	}
 
 	return hash
